@@ -5,8 +5,8 @@ import (
 	"log/slog"
 
 	"github.com/gofiber/fiber/v3"
-	"github.com/mtproject-ru/server/database/entities"
 	"github.com/mtproject-ru/server/services"
+	"github.com/mtproject-ru/server/web/dto"
 )
 
 func setupUserController(router fiber.Router) {
@@ -29,6 +29,6 @@ func getUserByUsernameHandler(ctx fiber.Ctx) error {
 	}
 
 	return ctx.Status(fiber.StatusOK).JSON(NewOkResponse(
-		entities.UserEntityToResponse(user),
+		dto.ToUserResponse(user),
 	))
 }

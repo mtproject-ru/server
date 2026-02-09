@@ -5,17 +5,3 @@ type UserEntity struct {
 	Username string `db:"username"`
 	Password string `db:"password"`
 }
-
-// DTO
-type UserResponse struct {
-	Id       uint   `json:"id"`
-	Username string `json:"username"`
-}
-
-// Mappers
-func UserEntityToResponse(entity *UserEntity) UserResponse {
-	return UserResponse{
-		Id:       entity.Id,
-		Username: entity.Username,
-	}
-}
