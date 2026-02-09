@@ -1,4 +1,4 @@
 # server
 Backend for maybetomorrow app
 
-[https://github.com/mtproject-ru/maybetomorrow_web](Maybetomorrow web app)
+[Maybetomorrow web app](https://github.con/mtproject-ru/webplatform)
