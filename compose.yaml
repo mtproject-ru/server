@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: "postgres:18-alpine"
+    container_name: "postgres"
+    profiles:
+      - dev
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: "pgadmin"
+    profiles:
+      - dev
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+
+volumes:
+  pgadmin_data:
+  postgres_data:
