@@ -20,7 +20,10 @@ func getUserByUsernameHandler(ctx fiber.Ctx) error {
 		return ctx.Status(fiber.StatusBadRequest).JSON(NewErrResponse(err))
 	}
 
-	userService := fiber.MustGetState[services.UserService](ctx.App().State(), services.USER_SERVICE_KEY)
+	userService := fiber.MustGetState[services.UserService](
+		ctx.App().State(),
+		services.USER_SERVICE_KEY,
+	)
 	user, err := userService.GetUserByUsername(username)
 
 	if err != nil {

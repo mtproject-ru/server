@@ -5,6 +5,7 @@ import (
 	"log/slog"
 	"os"
 
+	"github.com/mtproject-ru/server"
 	"github.com/mtproject-ru/server/config"
 	"github.com/mtproject-ru/server/database"
 	"github.com/mtproject-ru/server/services"
@@ -16,6 +17,7 @@ func main() {
 	config.SetupLogging()
 
 	database.SetupDatabase()
+	server.SetupMigrations()
 
 	app := config.SetupFiber()
 

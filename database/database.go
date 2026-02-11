@@ -24,8 +24,4 @@ func SetupDatabase() {
 	}
 
 	slog.Info("Успешно подключились к базе данных")
-	if err := initSchema(DB); err != nil {
-		log.Fatal(err)
-	}
-	slog.Info("Успешно создали все необходимое в базе данных")
 }
