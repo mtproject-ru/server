@@ -1,0 +1,72 @@
+services:
+  postgres:
+    image: "postgres:18-alpine"
+    container_name: "postgres"
+    profiles:
+      - dev
+      - production
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+    networks:
+      - appnet
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: "pgadmin"
+    profiles:
+      - dev
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - appnet
+
+  redis:
+    image: "redis:8-alpine"
+    container_name: "redis"
+    profiles:
+      - dev
+      - production
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/var/lib/redis
+    networks:
+      - appnet
+
+  redis-insight:
+    image: redis/redisinsight:latest
+    container_name: "redis-insight"
+    profiles:
+      - dev
+    ports:
+      - "5540:5540"
+    volumes:
+      - redis_insight_data:/var/lib/redis_insight
+    depends_on:
+      - redis
+    networks:
+      - appnet
+
+volumes:
+  pgadmin_data:
+  postgres_data:
+  redis_data:
+  redis_insight_data:
+
+
+networks:
+  appnet:
+    driver: bridge
