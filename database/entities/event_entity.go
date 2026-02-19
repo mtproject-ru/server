@@ -8,6 +8,8 @@ import (
 type EventEntity struct {
 	Id         uint       `db:"id"`
 	Visibility Visibility `db:"visibility"`
+	// Массив айди пользователей, которые могут видеть данное событие
+	VisibleFor []uint `db:"visible_for"`
 	// VARCHAR(128)
 	EventTitle string `db:"event_title"`
 	// VARCHAR(512)

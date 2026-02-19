@@ -19,13 +19,15 @@ type UserRepository interface {
 	AddEvent(userId uint, eventId uint) error
 
 	// GetByID Возвращает пользователя с указанным айди. Если не найдено, то nil и ошибку
-	GetByID(id int64) (*entities.UserEntity, error)
+	GetByID(id uint) (*entities.UserEntity, error)
 
 	// GetByUsername Возвращает пользователя с указанным юзернеймом. Если не найдено, то nil и ошибку
 	GetByUsername(username string) (*entities.UserEntity, error)
 
+	GetAllEvents(id uint) ([]entities.EventEntity, error)
+
 	// ExistsByID Возвращает true, если пользователь с указанным айди существует, иначе false
-	ExistsByID(id int64) (bool, error)
+	ExistsByID(id uint) (bool, error)
 
 	// ExistsByUsername Возвращает true, если пользователь с указанным юзернеймом существует, иначе false
 	ExistsByUsername(username string) (bool, error)

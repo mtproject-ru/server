@@ -8,6 +8,8 @@ import (
 type RoomEntity struct {
 	Id         uint       `db:"id"`
 	Visibility Visibility `db:"visibility"`
+	// Массив пользователей, которые могут видеть эту комнату (исключая самих участников)
+	VisibleFor []uint `db:"visible_for"`
 	// VARCHAR(64)
 	RoomTitle string `db:"room_title"`
 	// VARCHAR(512)
